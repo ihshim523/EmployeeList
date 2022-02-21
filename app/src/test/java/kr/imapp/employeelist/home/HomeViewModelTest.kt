@@ -11,6 +11,7 @@ import kr.imapp.employeelist.data.Employee
 import kr.imapp.employeelist.data.MockEmployeeRepository
 import kr.imapp.employeelist.ui.home.HomeViewModel
 import kr.imapp.employeelist.ui.home.HomeViewState
+import kr.imapp.employeelist.ui.home.SortType
 import kr.imapp.employeelist.util.ApiResult
 import kr.imapp.employeelist.util.CoroutineDispatcherRule
 import org.junit.Assert.assertEquals
@@ -67,7 +68,7 @@ class HomeViewModelTest {
 
         subject.state.observeForever { state ->
             assertTrue(state is HomeViewState.Error)
-            assertEquals(exception, (state as HomeViewState.Error).exception)
+            assertEquals("test", (state as HomeViewState.Error).errorMessage)
         }
     }
 
@@ -85,6 +86,22 @@ class HomeViewModelTest {
         assertEquals(employee, (states[0] as HomeViewState.Success).list.single())
         assertTrue(states[1] is HomeViewState.Loading)
         assertEquals(employee, (states[2] as HomeViewState.Success).list.single())
+    }
+
+    @Test
+    fun `on sort type change should return the sort type in view state`() = dispatcher.runBlockingTest {
+        mockPhotoRepository.employeeList = ApiResult.Success(listOf(employee))
+
+        subject = HomeViewModel(mockPhotoRepository, savedStateHandle)
+
+        val states = collectStates(subject.state)
+
+        subject.onSortChanged(SortType.BY_TEAM)
+
+        assertEquals(employee, (states[0] as HomeViewState.Success).list.single())
+        assertTrue(states[1] is HomeViewState.Loading)
+        assertEquals(employee, (states[2] as HomeViewState.Success).list.single())
+        assertEquals(SortType.BY_TEAM, (states[2] as HomeViewState.Success).sortType)
     }
 
     private fun collectStates(state: LiveData<HomeViewState>): List<HomeViewState> {

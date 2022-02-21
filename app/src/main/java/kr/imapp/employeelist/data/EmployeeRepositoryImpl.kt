@@ -1,17 +1,16 @@
 package kr.imapp.employeelist.data
 
-import android.util.Log
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kr.imapp.employeelist.util.ApiResult
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class EmployeeRepositoryImpl(
-    private val employeeApi: EmployeeApi
+    private val employeeApi: EmployeeApi,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : EmployeeRepository {
 
-    override suspend fun getEmployeeList(): ApiResult<List<Employee>> = withContext(Dispatchers.IO) {
+    override suspend fun getEmployeeList(): ApiResult<List<Employee>> = withContext(dispatcher) {
         try {
             val list = employeeApi.listEmployee().employees
 
