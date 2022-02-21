@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface EmployeeApi {
-    @GET("/sq-mobile-interview/employees_empty.json")
+    @GET("/sq-mobile-interview/employees.json")
     suspend fun listEmployee(): Employees
 
     // /sq-mobile-interview/employees.json
