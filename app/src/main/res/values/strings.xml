@@ -3,4 +3,10 @@
     <string name="title_home">Employee List</string>
     <string name="title_settings">Settings</string>
     <string name="loading_error"> loading error (reason : %s)</string>
+    <string name="empty_list_error">No employee available</string>
+    <string name="menu_normal">Normal</string>
+    <string name="menu_malformed">Malformed</string>
+    <string name="menu_empty">Empty</string>
+    <string name="by_name">By Name</string>
+    <string name="by_team">By Team</string>
 </resources>

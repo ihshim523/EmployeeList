@@ -7,21 +7,21 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Employee(
     @SerializedName("uuid")
-    val uuid: String,
+    val uuid: String?,
     @SerializedName("full_name")
-    val fullName: String,
+    val fullName: String?,
     @SerializedName("phone_number")
-    val phoneNumber: String,
+    val phoneNumber: String?,
     @SerializedName("email_address")
-    val email: String,
+    val email: String?,
     @SerializedName("biography")
-    val biography: String,
+    val biography: String?,
     @SerializedName("photo_url_small")
-    val smallPhotoUrl: String,
+    val smallPhotoUrl: String?,
     @SerializedName("photo_url_large")
-    val largePhotoUrl: String,
+    val largePhotoUrl: String?,
     @SerializedName("team")
-    val team: String,
+    val team: String?,
     @SerializedName("employee_type")
-    val employeeType: String,
+    val employeeType: String?,
 ) : Parcelable
