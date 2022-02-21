@@ -1,22 +1,47 @@
-# Best Photo for Android
+## Build tools & versions used
 
-This project will build an Android app that shows editor's pick best photos fom Unsplash.
-There are two tabs, one for browsing best photos and the other for searching photo library with keywords.
+Android Studio Bumblebee | 2021.1.1 Patch1
+Minimum SDK: 26
 
-## Requirements
+## Steps to run the app
 
-- Android minimum API 26+
-- Android Studio ArcticFox 3.1+
-- Kotlin 1.4+
-- Use AndroidX artifacts when creating your project
+1. Open project
+2. Build and run on emulator or physical device
 
-## Installation
+## What areas of the app did you focus on?
 
-1. Open the project in Android Studio.
-2. run with an emulator or connected physical device.
+- Clear separation of concerns with 3-tier design pattern between view, view model and data repository (MVVM).
+- View model retains data presented in the view and manages saved instance to survive system view destroyed scenario such as
+configuration change.
+- With passive view principle, view passively renders the view state emitted from the view model. This minimizes amount of business logic in views
+- By letting view model contains business logic, testing with unit test on the view model will cover most of functionality and reduce chance of unexpected error.
 
-## Notes
+## What was the reason for your focus? What problems were you trying to solve?
 
-- Unsplash API Access Key is embedded in the application class and rated to 50 calls / hour
-- like API requires write_like scope which the account doesn't have,
-  so the function doesn't work on the detail view when tapping on the thumbs up icon.
+During app development, developers have to accept many requirement changes and produce scalable, performant and bug free code in time.
+Decoupling between components and modules is a key to increase adaptability to the change.
+Also maintaining one-way communication between view and view model simplifies code path and enhance code readability.
+
+## How long did you spend on this project?
+
+6 hours in spanning a week
+
+## Did you make any trade-offs for this project? What would you have done differently with more time?
+
+Due to time constraint, I couldn't spend time on applying modern UI components.
+If I would have more time, would like to try Compose UX library.
+
+## What do you think is the weakest part of your project?
+
+No paging support is implemented so if data set is large, app will perform slower.
+No modularization or dependency injection support.
+
+## Did you copy any code or dependencies? Please make sure to attribute them here!
+
+Retrofit by Square
+Picasso by Square
+Influenced by project of current company on a utility extension function (savedState)
+
+## Is there any other information you’d like us to know?
+
+happy coding!
